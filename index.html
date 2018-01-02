@@ -58,7 +58,7 @@
           <input type="text" class="form-control" id="until" placeholder="2017-03-31">
         </div>
       </form>
-      <button class="btn btn-primary pull-right" id="urlButton">URLを取得</button>
+      <button class="btn btn-primary btn-block" id="urlButton">URLを取得</button>
     </div>
   </div>
   
@@ -87,20 +87,26 @@
   <script>
 
     $("#urlButton").on('click', function(){
+   
       var userid = $("#userid").val()
       var from = $("#from").val()
       var until = $("#until").val()
       console.log(userid + from + until)
-      var url = "https://twitter.com/search?&q=%20from%3A" + userid + "%20since%3A" + from + "%20until%3A" + until + "&src=typd";
-      var tbody = " \
-           <tr> +\
-              <td>" + userid + "</td> \
-              <td>" + from + "</td> \
-              <td>" + until + "</td> \
-              <td><a href =" + url + " target='_blank' >" + "ツイート一覧を見る" + "</td> \
-          </tr>"
-      $("#tbody").prepend(tbody);
-    });
+      if (userid != "" && from != "" && until != ""){
+        var url = "https://twitter.com/search?&q=%20from%3A" + userid + "%20since%3A" + from + "%20until%3A" + until + "&src=typd";
+        var tbody = " \
+             <tr> +\
+                <td>" + userid + "</td> \
+                <td>" + from + "</td> \
+                <td>" + until + "</td> \
+                <td><a href =" + url + " target='_blank' >" + "ツイート一覧を見る" + "</td> \
+            </tr>"
+        $("#tbody").prepend(tbody);
+      }else{
+        alert("すべての値を入力してください")
+      }
+  });
+
   </script>
 
   <!-- Optional JavaScript -->
