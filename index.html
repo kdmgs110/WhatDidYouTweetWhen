@@ -12,13 +12,38 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>  
 
   <title>Tweet Reflection</title>
+
+  <style>
+    #title{
+      padding:30px;
+      margin:50px;
+    }
+
+    #allWrapper{
+      background-color:#E7ECF0;
+    }
+    #searchWrapper{
+      background-color:#FFFFFF;
+    }
+
+    .resultContainer{
+      margin:110px 0px;
+      background-color:#E7ECF0;
+    }
+
+
+  </style>
 </head>
  
 <body>
-  <div class="container">
+  <div class="container" id="allWrapper">
     <div class="searchWrapper">
       <form>
-        <h1>Tweet Reflection</h1>
+        <h1 class="text-center" id="title">Tweet Reflection</h1>
+        <div class="message">
+          <p class="text-center">あの時<br> あの人は<br>何を思っていたんだろう</p>
+        </div>
+
         <div class="form-group">
           <label for="exampleInputTwitterID">ツイッターのユーザーID</label>
           <input type="text" class="form-control" id="userid" placeholder="twitter id">
@@ -33,22 +58,20 @@
           <input type="text" class="form-control" id="until" placeholder="2017-03-31">
         </div>
       </form>
-
       <button class="btn btn-primary pull-right" id="urlButton">URLを取得</button>
     </div>
-    
-    <div class="urlContainer">
-      <label>ツイートのURLはこちらです</label>
-      <span id="url"></span>
-    </div>
-
+  </div>
+  
+  <div class="container">
     <div class="resultContainer">
+      <h1 class="text-center">Result</h1>
       <table class="table table-striped">
         <thead>
-          <tr>
-            <th scope="col">userid</th>
-            <th scope="col">from</th>
-            <th scope="col">until</th>
+          <tr>  
+            <th scope="col">ユーザーID</th>
+            <th scope="col">いつから</th>
+            <th scope="col">いつまで</th>
+            <th scope="col">URL</th>
           </tr>
         </thead>
 
@@ -58,7 +81,7 @@
       </table>
     </div>
   </div>
-  
+
   <!-- Javascript -->
 
   <script>
@@ -74,9 +97,9 @@
               <td>" + userid + "</td> \
               <td>" + from + "</td> \
               <td>" + until + "</td> \
-              <td><a href =" + url + ">" + "ツイート一覧を見る" + "</td> \
+              <td><a href =" + url + " target='_blank' >" + "ツイート一覧を見る" + "</td> \
           </tr>"
-      $("#tbody").append(tbody);
+      $("#tbody").prepend(tbody);
     });
   </script>
 
