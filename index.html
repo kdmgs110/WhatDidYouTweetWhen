@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
+
+  <!-- jQuery -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>  
+
+  <title>What Did You Tweet When?</title>
+</head>
+ 
+<body>
+  <div class="container">
+    <form>
+      <h1>指定した時期から、ユーザーのツイートを取得できます。</h1>
+      <div class="form-group">
+        <label for="exampleInputTwitterID">ツイッターのユーザーID</label>
+        <input type="text" class="form-control" id="userid" placeholder="twitter id">
+        <small id="emailHelp" class="form-text text-muted">ツイッターのユーザーIDを入れて下さい</small>
+      </div>
+      <div class="form-group">
+        <label for="exampleInputFrom">いつから</label>
+        <input type="text" class="form-control" id="from" placeholder="2017-01-01">
+      </div>
+      <div class="form-group">
+        <label for="exampleInputUntil">いつまで</label>
+        <input type="text" class="form-control" id="until" placeholder="2017-03-31">
+      </div>
+    </form>
+
+    <button class="btn btn-primary" id="urlButton">URLを取得</button>
+    
+    <div class="urlContainer">
+      <label>ツイートのURLはこちらです</label>
+      <span id="url"></span>
+    </div>
+
+    <div class="resultContainer">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">userid</th>
+            <th scope="col">from</th>
+            <th scope="col">until</th>
+          </tr>
+        </thead>
+
+        <tbody id="tbody">
+        </tbody>
+
+      </table>
+    </div>
+  </div>
+  
+  <!-- Javascript -->
+
+  <script>
+
+    $("#urlButton").on('click', function(){
+      var userid = $("#userid").val()
+      var from = $("#from").val()
+      var until = $("#until").val()
+      console.log(userid + from + until)
+      var url = "https://twitter.com/search?&q=%20from%3A" + userid + "%20since%3A" + from + "%20until%3A" + until + "&src=typd";
+      var tbody = " \
+           <tr> +\
+              <td>" + userid + "</td> \
+              <td>" + from + "</td> \
+              <td>" + until + "</td> \
+              <td><a href =" + url + ">" + "ツイート一覧を見る" + "</td> \
+          </tr>"
+      $("#tbody").append(tbody);
+    });
+  </script>
+
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js" integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4" crossorigin="anonymous"></script>
+</body>
+</html>
+
+
+https://twitter.com/search?q=%20from%3Akkdmgs110%20since%3A2017-03-01%20until%3A2017-03-31&src=typd
+
+https://twitter.com/search?f=users&q=from%3Anever_be_a_pm%20since%3A2017-06-01%20until%3A2017-12-01&src=typd
